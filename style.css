@@ -4,6 +4,9 @@ body {
     margin:0;
     font-family: Audiowide, sans-serif;
     font-size: 1.5rem;
+    color: #00FF41;
+    background:url(matrix.svg);
+    background-size: 100%;
 }
 
 .calculator {
@@ -17,9 +20,11 @@ body {
 }
 
 .display {
-    background: whitesmoke;
+    border: solid #00FF41;;
+    border-width: 2px;
+    background:#0D0208;
     height: 100px;
-    width: 360px;
+    width: 356px;
     text-align: start;
     padding: 20px
 }
@@ -38,12 +43,15 @@ body {
 }
 
 .btns button {
+    color: #00FF41;
+    background: #0D0208;
     width:100%;
     font-family: Audiowide, sans-serif;
     font-size: 1.2rem;
 }
 
 button {
+    border-color: #00FF41;
     padding:40px
 }
 
