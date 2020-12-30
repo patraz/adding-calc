@@ -1,0 +1,47 @@
+body {
+    margin:0;
+}
+
+.calculator {
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    overflow-wrap: break-word;
+}
+
+.display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: whitesmoke;
+    height: 100px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.btns {
+    width: 400px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.btns button {
+    width:100%
+}
+
+.equals {
+    grid-column: span 3;
+}
+
+@media screen and (max-width:100px) {
+    .btns {
+        height: 100%;
+        width: 80vw;
+    }
+    .calculator {
+        height: 80vh;
+        width: 80vw;
+    }
+}
