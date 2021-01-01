@@ -4,67 +4,75 @@ const clear = document.querySelector('.clear')
 const plus = document.querySelector('.plus')
 const equals = document.querySelector('.equals')
 const zero = document.querySelector('.zero')
+const minus = document.querySelector('.minus')
 
-let numArray = [];
-let actualNumbers = '';
-let adding = 0;
+let backUp = '';
 
-// if zero is first number it will not be displayed
-function addZeroToDisplay() {
-    if (actualNumbers !== '') {
-        let nmbr = `${zero.innerText}`;
-        actualNumbers = actualNumbers.concat(nmbr);
-        display.innerText = actualNumbers;
+// fucntions
+
+function zeroAdd() {
+    if (backUp.endsWith("+") === true || backUp.endsWith("-") === true) {
+    } else if (display.innerText !== '') {
+        display.innerText = display.innerText.concat("0")
+        backUp = backUp.concat("0");
     }
 }
 
-// adding numbers to display
 function addToDisplay(item) {
-    let nmbr = `${item.innerText}`;
-    actualNumbers = actualNumbers.concat(nmbr);   
-    display.innerText = actualNumbers;
+    let nmbr = item.innerText;
+    backUp = backUp.concat(nmbr);   
+    display.innerText = backUp;
 };
 
-// plus button making first numbers to one array, and new input to new numbers
+function substr() {
+    if (backUp.endsWith("+") === true || backUp.endsWith("-") === true) {
 
-function addPlus(){
-    if (actualNumbers !== ''){
-     let first = `${actualNumbers}`;
-     numArray.push(first)
-     actualNumbers = ''
+    } else if (display.innerText !== '') {
+        display.innerText = display.innerText.concat("-")
+        backUp = backUp.concat("-");
     }
- }
+}
 
+function add() {
+    if (backUp.endsWith("-") === true) {
+    }
+    else if (display.innerText !== '' && backUp.endsWith("+") === false) {
+        display.innerText = display.innerText.concat("+")
+        backUp = backUp.concat("+");
+    }
+}
 
- //equals button showing sum of numbers
-function sum(){
-    addPlus();
-    const reduceArray = numArray.reduce((acc, num) => {       
-        let full =  acc + Number(num)
-        console.log(full)
-        display.innerText = full
-        return full
-    }, 0);
+function equal() {
+    if (backUp.charAt(backUp.length-1) === "+" || backUp.charAt(backUp.length-1) === "-") {
+        eval(backUp.slice(0, -1))
+        display.innerText = eval(backUp.slice(0, -1))
+        backUp = display.innerText
+    }
+    else if (backUp !== "") {
+        display.innerText = eval(backUp)
+        backUp = display.innerText
+    }
 }
 
 function clearing() {
+    backUp = '';
     display.innerText = '';
-    numArray = [];
-    actualNumbers = '';
 }
 
-
-
-zero.addEventListener('click', addZeroToDisplay)
+// event listeners
 
 buttons.forEach(item => {
     item.addEventListener('click', event => {
-        addToDisplay(item);
+        addToDisplay(item);     
     });
 });
 
-plus.addEventListener('click', addPlus)
+plus.addEventListener('click', add)
 
-equals.addEventListener('click', sum)
+equals.addEventListener('click', equal)
 
-clear.addEventListener("click", clearing)
+clear.addEventListener('click', clearing)
+
+minus.addEventListener('click', substr)
+
+zero.addEventListener('click', zeroAdd)

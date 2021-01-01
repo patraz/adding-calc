@@ -23,6 +23,7 @@ body {
     width: 400px;
     border: solid #00FF41;;
     border-width: 2px;
+    border-bottom: 0px;
     background:#0D0208;
     text-align: start;
     padding: 20px;
@@ -55,6 +56,6 @@ button {
 }
 
 .equals {
-    grid-column: span 3;
+    grid-column: span 2;
 }
 
