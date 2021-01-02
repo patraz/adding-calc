@@ -126,10 +126,8 @@ button:active {
 }
 
 .clear {
-    grid-column: span 1;
-}
-
-.clearEntry {
     grid-column: span 2;
 }
+
+
 
