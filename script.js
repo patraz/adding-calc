@@ -30,10 +30,8 @@ function zeroAdd() {
 function dotAdd() {
     if (dotBool === false) {
     } else if (backUp.endsWith("+") === true || backUp.endsWith("-") === true) {
-    }
     } else if (backUp.endsWith("*") === true || backUp.endsWith("/") === true ) {
-    }
-    else if(display.innerText !== '' && backUp.endsWith(".") === false ) {
+    } else if(display.innerText !== '' && backUp.endsWith(".") === false ) {
       display.innerText = display.innerText.concat(".")
       backUp = backUp.concat(".");
       dotBool = false
