@@ -87,7 +87,6 @@ body {
 
 @media screen and (max-width: 900px){
     .display {
-        /* height: 40px; */
         width: 250px;
     }
 }
@@ -122,7 +121,7 @@ button:active {
 }
 
 .equals {
-    grid-column: span 1;
+    grid-column: span 3;
 }
 
 .clear {

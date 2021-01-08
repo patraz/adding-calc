@@ -12,8 +12,8 @@ const dot = document.querySelector(".dot")
 const clearEntry = document.querySelector('.clearEntry')
 
 let backUp = '';
-
-// fucntions
+let dotBool = true;
+// functions
 
 
 function zeroAdd() {
@@ -27,19 +27,14 @@ function zeroAdd() {
     }
 }
 
-// function dotAdd() {
-//     if (backUp.endsWith("+") === true || backUp.endsWith("-") === true) {
-
-//     } else if (backUp.endsWith("*") === true || backUp.endsWith("/") === true ) {
-
-//     } else if(backUp.includes(".")){
-
-//     } else if (display.innerText !== '' && backUp.endsWith(".") === false ) {
-//     display.innerText = display.innerText.concat(".")
-//     backUp = backUp.concat(".");
-// }
-
-// }
+function dotAdd() {
+    if (dotBool === false) {
+    } else if(display.innerText !== '' && backUp.endsWith(".") === false ) {
+      display.innerText = display.innerText.concat(".")
+      backUp = backUp.concat(".");
+      dotBool = false
+    }
+}
 
 function addToDisplay(item) {
     let nmbr = item.innerText;
@@ -55,6 +50,7 @@ function substr() {
     }  else if (display.innerText !== '') {
         display.innerText = display.innerText.concat("-")
         backUp = backUp.concat("-");
+        dotBool = true;
     }
 }
 
@@ -67,6 +63,7 @@ function add() {
     else if (display.innerText !== '') {
         display.innerText = display.innerText.concat("+")
         backUp = backUp.concat("+");
+        dotBool = true;
     }
 }
 
@@ -75,16 +72,19 @@ function equal() {
         eval(backUp.slice(0, -1))
         display.innerText = eval(backUp.slice(0, -1))
         backUp = display.innerText
+        dotBool = true;
     }
     else if (backUp !== "") {
         display.innerText = eval(backUp)
         backUp = display.innerText
+        dotBool = true;
     }
 }
 
 function clearing() {
     backUp = '';
     display.innerText = '';
+    dotBool = true;
 }
 
 function times() {
@@ -95,6 +95,7 @@ function times() {
     } else if (display.innerText !== '') {
         display.innerText = display.innerText.concat("*")
         backUp = backUp.concat("*");
+        dotBool = true;
     }
 }
 
@@ -106,6 +107,7 @@ function dividedBy() {
     } else if (display.innerText !== '') {
         display.innerText = display.innerText.concat("/")
         backUp = backUp.concat("/");
+        dotBool = true;
     }
 }
 
@@ -159,20 +161,16 @@ function addEventsToButtons(btn) {
         case 'divide':
             dividedBy();
             break;
-        // case 'dot':
-        //     dotAdd();
-        //     break;
+        case 'dot':
+            dotAdd();
+            break;
     }
 }
 
 function addEventsByKey(btnEvent) {
     const key = (btnEvent.key)
 
-    console.log(key)
     switch (true) {
-        case typeof key == 'Number':
-            console.log('działam')
-            break;
         case key ==='+':
             add();
             break;
@@ -197,11 +195,10 @@ function addEventsByKey(btnEvent) {
         case key === '/':
             dividedBy()
             break;
-        // case key === '.':
-        //     dotAdd()
-        //     break;
+        case key === '.':
+            dotAdd()
+            break;
         case isNaN(key) === false:
-            console.log(key)
             addNumDisplay(key)
             break;
         case key === 'Backspace':
